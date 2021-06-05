@@ -16,12 +16,20 @@ async function startViewer()
     {
         const { bot, mineflayerViewer } = require('./Bot');
         getPort = await portfinder.getPortPromise();
-        
-        mineflayerViewer(bot, {
-            port: getPort,
-            firstPerson: config.viewer['first-person'],
-            viewDistance: config.viewer['view-distance']
-        });
+
+        if (config.viewer['automatic-port']) {
+            mineflayerViewer(bot, {
+                port: getPort,
+                firstPerson: config.viewer['first-person'],
+                viewDistance: config.viewer['view-distance']
+            });
+        } else {
+            mineflayerViewer(bot, {
+                port: config.viewer['web-port'],
+                firstPerson: config.viewer['first-person'],
+                viewDistance: config.viewer['view-distance']
+            });
+        }
 
         bot.on('path_update', (res) =>
         {

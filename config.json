@@ -91,6 +91,8 @@
         "enable": true,
         "first-person": false,
         "view-distance": 6
+        "automatic-port": true,
+        "web-port": 8080
     },
 
     "low-health": {
